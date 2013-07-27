@@ -1,2 +1,8 @@
-- Make a "project" folder that all project data gets in there --> users make no changes to the rest
-- automate index.php file recogniton --> check for file.exist();
+PinePHP is a simple yet powerful non-MVC PHP Framework. It is intended for smaller projects with smaller amounts of code.
+
+Key features:
+
+- index.php-centric --> integrated routing
+- HTML snippets
+
+PinePHP is still a work in progress.

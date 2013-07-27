@@ -1,0 +1,2 @@
+- Make a "project" folder that all project data gets in there --> users make no changes to the rest
+- automate index.php file recogniton --> check for file.exist();

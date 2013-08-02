@@ -1,25 +1,31 @@
 <?
 session_start();
 
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
-
 $time = microtime();
 $time = explode(' ', $time);
 $time = $time[1] + $time[0];
 $start = $time;
 
-require_once("config.php");
+try //Global Try-Catch
+{
 
-$_SESSION["companyid"] = "100001";
-$_SESSION["currency"] = "euro";
-$_SESSION["currency_symbol"] = "€";
+include_once("config.php");
 
-require_once("php/class.database.php");
-require_once("php/format.php");
-require_once("php/alert.php");
-require_once("php/controls.php");
-require_once("php/module.geo.php");
-require_once("php/general.php");
+if (SYSTEM_MODE == "development") {
+    error_reporting(E_ERROR | E_WARNING | E_PARSE);
+} else {
+    error_reporting(-1);
+}
+
+include_once(SYSTEM_PATH . "core/class.database.php");
+include_once(SYSTEM_PATH . "core/format.php");
+include_once(SYSTEM_PATH . "core/alert.php");
+include_once(SYSTEM_PATH . "core/controls.php");
+include_once(SYSTEM_PATH . "core/module.geo.php");
+include_once(SYSTEM_PATH . "core/general.php");
+include_once(SYSTEM_PATH . "core/htmlbase.php");
+
+$Page = new HTMLpage();
 
 //Login handling only
 if (LOGIN_REQUIRED === false) {
@@ -28,14 +34,16 @@ if (LOGIN_REQUIRED === false) {
     $_SESSION["companyid"] = "100001";
 } else {
     if ($_GET["c"] == "Login") {
-
-        $db = new database();
-        $db->connect();
-     
+        
+        if (REQUIRE_DATABASE === true) {
+            $db = new database();
+            $db->connect();
+        }
+        
         if ($_SESSION["loggedin"] === true) {
             alert("You are already logged in.", "error");
         } else {
-            require_once("controller/LoginController.php");
+            include_once(SYSTEM_PATH . "actions/LoginController.php");
         }
     }
 }
@@ -44,48 +52,37 @@ if (LOGIN_REQUIRED === false) {
 //Regular application code
 if ($_SESSION["loggedin"] === true) {
      
-     
-     //alert("An error occurred.", "error");
-     
-     $db = new database();
-     $db->connect();
+     if (REQUIRE_DATABASE === true) {
+        $db = new database();
+        $db->connect();
+    }
     
     if (isset($_GET["c"])) {
         $controller = array("Logout", "Delete");
-        if (in_array($_GET["c"], $controller)) {
+        if (in_array($_GET["a"], $controller)) {
             
-            require_once("controller/" . $_GET["c"] . "Controller.php");
+            include_once(SYSTEM_PATH . "actions/" . $_GET["c"] . "Controller.php");
         } 
     }
     
-    require_once("php/htmlbase.php");
+    
     
     if (!isset($_GET["p"])) {
-        require_once("pages/dash.php");
+        $pagename = DEFAULT_PAGE;
     } else {
-        $pages = array("dash", "customers", "orders", "products", "docs", "edit", "mail", "editdoc");
-        $json = array("json_customer", "json_order", "json_document", "json_product");
-        $docs = array("doc_html");
-        $ajax = array("ajax_save_edits", "ajax_get_stats", "ajax_show_orders");
-        
-        
-        if (in_array($_GET["p"], $pages)) {
-            require_once("pages/" . $_GET["p"] . ".php");
-        } elseif (in_array($_GET["p"], $json)) {
-             require_once("json/" . $_GET["p"] . ".php");
-        } elseif (in_array($_GET["p"], $docs)) {
-             require_once("docs/" . $_GET["p"] . ".php");
-        } elseif (in_array($_GET["p"], $ajax)) {
-             require_once("ajax/" . $_GET["p"] . ".php");
-        } else {
-            header('HTTP/1.0 404 Not Found');
-        }
+        $pagename = $_GET["p"];
+    }
+    
+    if (file_exists(APP_PATH . $pagename . ".php")) {
+        include_once(APP_PATH . $pagename . ".php");
+    } else {
+        http_response_code(500);
     }
     
 
 //Not logged in.
 } else {
-    require_once("pages/login.php");
+    include_once(APP_PATH . DEFAULT_PAGE_NOT_LOGGEDIN . ".php");
 }
 
 $time = microtime();
@@ -94,5 +91,9 @@ $time = $time[1] + $time[0];
 $finish = $time;
 $total_time = round(($finish - $start), 4);
 //echo 'Page generated in '.$total_time.' seconds.';
-
+}
+catch (Exception $e)
+{
+ echo $e->message;
+}
 ?>

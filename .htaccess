@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+#Uncomment to ensure use of "www" in the domain. http://example.com => http://www.example.com
+#RewriteCond %{HTTP_HOST} !^www\..* [NC] 
+#RewriteRule ^(.*) http://www.%{HTTP_HOST}/$1 [R=301]
+
+#Direct Link-through to static files
+RewriteRule ^(img|css|js|images)/(.*)(.css|.js|.jpg|.gif|.png)$ app/$1/$2$3 [NC,L]
+
+#Link-through to vendor files using VENDOR_PATH_EXTERNAL (see config.php)
+RewriteRule ^lib/(.*)$ vendor/$1 [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9-_]+)\.(php|html|htm)/?$ router.php?p=$1&ext=$2 [NC,L]
+
+</IfModule>

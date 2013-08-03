@@ -31,7 +31,6 @@ $Page = new HTMLpage();
 if (LOGIN_REQUIRED === false) {
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = "Guest";
-    $_SESSION["companyid"] = "100001";
 } else {
     if ($_GET["c"] == "Login") {
         
@@ -65,24 +64,18 @@ if ($_SESSION["loggedin"] === true) {
         } 
     }
     
-    
-    
     if (!isset($_GET["p"])) {
         $pagename = DEFAULT_PAGE;
     } else {
         $pagename = $_GET["p"];
     }
     
-    if (file_exists(APP_PATH . $pagename . ".php")) {
-        include_once(APP_PATH . $pagename . ".php");
-    } else {
-        http_response_code(500);
-    }
+    include_page($pagename);
     
 
 //Not logged in.
 } else {
-    include_once(APP_PATH . DEFAULT_PAGE_NOT_LOGGEDIN . ".php");
+    include_page(DEFAULT_PAGE_NOT_LOGGEDIN);
 }
 
 $time = microtime();

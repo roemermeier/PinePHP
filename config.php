@@ -1,6 +1,6 @@
 <?php
 //Login or no login - that is the question
-define("LOGIN_REQUIRED",     true);
+define("LOGIN_REQUIRED",     false);
 
 //System configuration
 define("SYSTEM_MODE",                   "development"); /* 'development' or 'production'*/
@@ -10,7 +10,7 @@ define("SYSTEM_USE_DEV_CONSOLE",        true);
 define("SYSTEM_PATH",                   "system/");
 define("APP_PATH",                      "app/");
 define("VENDOR_PATH",                   "vendor/");
-define("VENDOR_PATH_EXTERNAL",          "vendor/"); //coordinate with .htaccess
+define("VENDOR_PATH_EXTERNAL",          "lib/"); //coordinate with .htaccess
 
 /*Database configuration*/
 define("REQUIRE_DATABASE",   false); //Setting this to false may cause some functions to misbehave
@@ -24,6 +24,7 @@ define("DEFAULT_TITLE",                 "PinePHP");
 define("DEFAULT_LANG_CODE",             "de");
 define("DEFAULT_PAGE",                  "index");
 define("DEFAULT_PAGE_NOT_LOGGEDIN",     "index");
+define("DEFAULT_FILE_EXT",              "html"); //changing this may break links, "*" to accept all (php, html, htm)
 
 /*Vendor libraries provided by PinePHP*/
 define("USE_VENDORJS_JQUERY_LATEST",    false);

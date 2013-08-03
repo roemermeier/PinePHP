@@ -40,7 +40,9 @@ class HTMLpage {
             ?><link href="<? echo VENDOR_PATH_EXTERNAL; ?>css/bootstrap-responsive.min.css" rel="stylesheet"><?
         }
         if (SYSTEM_USE_DEV_CONSOLE === true && $_SESSION["developer_loggedin"] === true) {
-            ?><link href="<? echo SYSTEM_PATH; ?>developertool/devtool.css" rel="stylesheet"><?
+            ?><link href="<? echo SYSTEM_PATH; ?>developertool/devtool.css" rel="stylesheet">
+              <script src="<? echo SYSTEM_PATH; ?>developertool/devtool.js"></script>  
+                <?
         }
 
     }

@@ -23,6 +23,22 @@ Unzip the above files to your web server. PinePHP is up and running immediately.
 
 Your application files need to be placed inside the /app folder. For basic configuration options, please see config.php. Do not change any files in the /system folder. If you do, future updates may no longer work with your application.
 
+### example page
+
+´´´php
+
+<?php
+$Page = $GLOBALS["Page"]; 
+$Page->DisplayHead();
+
+$Page->DisplayBody();
+?>
+  
+<b>Hello World!</b>
+	
+<? $Page->DisplayFoot(); ?>
+´´´
+
 ## License
 
 PinePHP is licensed under the MIT license. Please see LICENSE.txt.

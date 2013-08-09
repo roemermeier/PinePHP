@@ -35,26 +35,26 @@
       </div>
       <div class="dev_tab" id="dev_session" style="display: none;">
           <?  
-            echo "<h3>$_SESSION</h3><pre>";
+            echo "<h3>\$_SESSION</h3><pre>";
             print_r($_SESSION);
             echo "</pre>";
           ?>
       </div>
       <div class="dev_tab" id="dev_get" style="display: none;">
           <?  
-            echo "<h3>$_GET</h3><pre>";
+            echo "<h3>\$_GET</h3><pre>";
             print_r($_GET);
             echo "</pre>";
           ?>
       </div>
       <div class="dev_tab" id="dev_post" style="display: none;"> <?  
-            echo "<h3>$_POST</h3><pre>";
+            echo "<h3>\$_POST</h3><pre>";
             print_r($_POST);
             echo "</pre>";
           ?>
       </div>
       <div class="dev_tab" id="dev_server" style="display: none;"> <?  
-            echo "<h3>$_SERVER</h3><pre>";
+            echo "<h3>\$_SERVER</h3><pre>";
             print_r($_SERVER);
             echo "</pre>";
           ?>

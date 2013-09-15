@@ -24,7 +24,7 @@ define("DEFAULT_TITLE",                 "PinePHP");
 define("DEFAULT_LANG_CODE",             "de");
 define("DEFAULT_PAGE",                  "index");
 define("DEFAULT_PAGE_NOT_LOGGEDIN",     "index");
-define("DEFAULT_FILE_EXT",              "html"); //changing this may break links, "*" to accept all (php, html, htm)
+define("DEFAULT_FILE_EXT",              "*"); //changing this may break links, "*" to accept all (php, html, htm)
 
 /*Vendor libraries provided by PinePHP*/
 define("USE_VENDORJS_JQUERY_LATEST",    false);

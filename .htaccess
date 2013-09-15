@@ -12,6 +12,9 @@ RewriteRule ^/?$ router.php [NC,L]
 #Link-through to vendor files using VENDOR_PATH_EXTERNAL (see config.php)
 RewriteRule ^lib/(.*)$ vendor/$1 [NC,L]
 
+#Provide access to admin system
+RewriteRule ^admin/(.*)/(.*)$ admin.php?v=$1&$2 [NC,L]
+
 #PHP and HTML pages are routed to router.php
 RewriteRule ^([a-zA-Z0-9-_]+)\.(php|html|htm)[?]?(.*)$ router.php?p=$1&ext=$2&%{QUERY_STRING} [NC,L]
 
@@ -20,10 +23,10 @@ RewriteCond %{REQUEST_URI}  !^(.*)app/(.*)$
 RewriteRule ^(.*)$ app/$1 [L]
 
 #Error page redirects
-ErrorDocument 400 app/error/400.php
-ErrorDocument 401 app/error/401.php
-ErrorDocument 403 app/error/403.php
-ErrorDocument 404 app/error/404.php
-ErrorDocument 500 app/error/500.php
+#ErrorDocument 400 app/error/400.php
+#ErrorDocument 401 app/error/401.php
+#ErrorDocument 403 app/error/403.php
+#ErrorDocument 404 app/error/404.php
+#ErrorDocument 500 app/error/500.php
 
 </IfModule>

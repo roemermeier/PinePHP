@@ -6,7 +6,7 @@ PinePHP is a basic framework for developing PHP applications. Its goal is to pro
 
 - all features optional 
 - no database required
-- important external libraries included (jQuery, Bootstrap, Normalize.js, ...)
+- common external libraries included (jQuery, Bootstrap, Normalize.js, ...)
 - alerts
 - MySQL support
 - HTML snippets
@@ -23,9 +23,11 @@ Unzip the above files to your web server. PinePHP is up and running immediately.
 
 Your application files need to be placed inside the /app folder. For basic configuration options, please see config.php. Do not change any files in the /system folder. If you do, future updates may no longer work with your application.
 
-### example page
+### Usage
 
-´´´php
+#### Hello World!
+
+```php
 
 <?php
 $Page = $GLOBALS["Page"]; 
@@ -38,6 +40,14 @@ $Page->DisplayBody();
 	
 <? $Page->DisplayFoot(); ?>
 ´´´
+
+#### Using Snippets
+
+```php
+<? $Page->DisplaySnippet("menu.php");
+´´´
+
+All Snippets need to be placed in the app/snippets folder.
 
 ## License
 

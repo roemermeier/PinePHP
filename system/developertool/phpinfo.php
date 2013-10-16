@@ -1,5 +1,8 @@
 <?php
-require_once(".../config.php");
+require_once("../../config.php");
 
-echo "Hello world!";
+if (SYSTEM_MODE == "development") {
+    phpinfo();
+}
+
 ?>

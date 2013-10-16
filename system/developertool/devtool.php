@@ -20,6 +20,9 @@
       <li class="dev_menuitem">
         <a href="javascript:devtool_activateTab('dev_server')">$_SERVER</a>
       </li>
+      <li class="dev_menuitem">
+        <a href="system/developertool/phpinfo.php" target="_blank">phpinfo()</a>
+      </li>
       <li id="dev_pageurl">
           <? echo currentFilePath(); ?>
       </li>

@@ -7,16 +7,7 @@
   
 	<!-- START sample content -->
 	<section class="slide">
-		<div class="center">
-			<div class="row">
-				<div class="fg3">
-					Welcome.
-				</div>		
-				<div class="fg9">
-					Have fun dude!
-				</div>						
-			</div>
-		</div>
+		<? $Page->DisplaySnippet("greeting.html"); ?>             
 	</section>
 	<!-- END sample content -->	
 <? 

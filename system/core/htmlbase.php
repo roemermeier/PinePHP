@@ -83,6 +83,10 @@ class HTMLpage {
       </html>
         <?
     }
+    
+    function DisplaySnippet($filename) {
+        include(APP_PATH . "snippets/" . $filename);
+    }
 }
 
 

@@ -39,13 +39,13 @@ $Page->DisplayBody();
 <b>Hello World!</b>
 	
 <? $Page->DisplayFoot(); ?>
-´´´
+```
 
 #### Using Snippets
 
 ```php
 <? $Page->DisplaySnippet("menu.php");
-´´´
+```
 
 All Snippets need to be placed in the app/snippets folder.
 

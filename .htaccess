@@ -7,19 +7,28 @@ RewriteBase /
 #RewriteRule ^(.*) http://www.%{HTTP_HOST}/$1 [R=301]
 
 #index page => to change, visit config.php
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^/?$ router.php [NC,L]
 
 #Link-through to vendor files using VENDOR_PATH_EXTERNAL (see config.php)
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^lib/(.*)$ vendor/$1 [NC,L]
 
 #Provide access to admin system
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^admin/(.*)/(.*)$ admin.php?v=$1&$2 [NC,L]
 
+#Direct access to developertool
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteRule ^system/developertool/(.*)$ system/developertool/$1 [NC,L]
+
 #PHP and HTML pages are routed to router.php
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^([a-zA-Z0-9-_]+)\.(php|html|htm)[?]?(.*)$ router.php?p=$1&ext=$2&%{QUERY_STRING} [NC,L]
 
 #Direct Link-through to everything else
 RewriteCond %{REQUEST_URI}  !^(.*)app/(.*)$
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteRule ^(.*)$ app/$1 [L]
 
 #Error page redirects

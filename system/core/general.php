@@ -27,6 +27,7 @@ function include_page($pagename) {
         }
     } else {
         http_response_code(404);
+        echo "Hen.";
     }
     
     

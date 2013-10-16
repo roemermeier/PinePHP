@@ -8,8 +8,7 @@ $start = $time;
 
 try //Global Try-Catch
 {
-
-include_once("config.php");
+    include_once("config.php");
 
 if (SYSTEM_MODE == "development") {
     error_reporting(E_ERROR | E_WARNING | E_PARSE);
@@ -65,16 +64,21 @@ if ($_SESSION["loggedin"] === true) {
     }
     
     if (!isset($_GET["p"])) {
-        $pagename = DEFAULT_PAGE;
+        include_once(APP_PATH . "/" . DEFAULT_PAGE . ".php");
+        $displayed = true;
     } else {
         $pagename = $_GET["p"];
     }
     
-    include_page($pagename);
+    if ($displayed !== true) {
+        include_page($pagename);
+    }
     
+     
 
 //Not logged in.
 } else {
+    
     include_page(DEFAULT_PAGE_NOT_LOGGEDIN);
 }
 

@@ -12,6 +12,14 @@ class HTMLpage {
         <meta name="description" content="">
         <meta name="author" content="">
         <?
+        if (SYSTEM_MODE == "development") {
+            ?>
+        <meta http-equiv="cache-control" content="max-age=0" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="pragma" content="no-cache" />
+            <?
+        }
         if (USE_VENDORJS_JQUERY_LATEST === true) {
             ?><script src="http://code.jquery.com/jquery.js"></script><?
         }
@@ -39,15 +47,16 @@ class HTMLpage {
          if (USE_VENDORLIB_BOOTSTRAP_RESPONSIVE === true) {
             ?><link href="<? echo VENDOR_PATH_EXTERNAL; ?>css/bootstrap-responsive.min.css" rel="stylesheet"><?
         }
+        
+
+    }
+    
+    function DisplayBody() {
         if (SYSTEM_USE_DEV_CONSOLE === true && $_SESSION["developer_loggedin"] === true) {
             ?><link href="<? echo SYSTEM_PATH; ?>developertool/devtool.css" rel="stylesheet">
               <script src="<? echo SYSTEM_PATH; ?>developertool/devtool.js"></script>  
                 <?
         }
-
-    }
-    
-    function DisplayBody() {
         ?>
           </head>
 

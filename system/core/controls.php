@@ -1,7 +1,5 @@
 <?php
 
-
-
 function DisplayCountrySelect($name) { 
 //Requires database connection. Not tested when not connected.
     

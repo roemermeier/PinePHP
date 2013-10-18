@@ -5,13 +5,15 @@ class database {
     function connect() {
 
         $a = mysql_connect(DB_HOST, DB_USERNAME, DB_PASSWORD);
-		mysql_select_db(DB_NAME);
-		
-		if (!$a) {
-			throw new Exception("Database connection failed.");
-		} else {
-			return true;
-		}
+        mysql_select_db(DB_NAME);
+
+        if (!$a) {
+                throw new Exception("Database connection failed.");
+        } else {
+                $entry = array("msg" => "Successfully connected to " . DB_NAME . " on " . DB_HOST . ".", "level" => "success");
+                $GLOBALS["sqllog"][] = $entry;
+                return true;
+        }
          $this->showsql = false;
     }
 
@@ -143,12 +145,16 @@ class database {
 	}
 	
 	function query($sql) {
+                $entry = array("msg" => $sql, "level" => "info");
+                $GLOBALS["sqllog"][] = $entry;
 		$class_db_query_res = mysql_query($sql);
                 
                 if ($this->showsql == true) {
                     echo "<br>" . $sql . "<br>";
                 }
                 if (!$class_db_query_res) {
+                    $entry = array("msg" => "Error executing this: ".$sql, "level" => "error");
+                    $GLOBALS["sqllog"][] = $entry;
                     throw new Exception("SQL Error");
                 }
                 
@@ -157,6 +163,8 @@ class database {
 	
 	function disconnect() {
 		mysql_close();
+                $entry = array("msg" => "Disconnected from the database.", "level" => "success");
+                $GLOBALS["sqllog"][] = $entry;
 	}
 }
 ?>

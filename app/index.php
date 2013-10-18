@@ -1,19 +1,18 @@
 <?php
- //$Page = $GLOBALS["Page"]; 
- $Page->DisplayHead();
+ $Pine->Page->DisplayHead();
   ?>
 <link href="app/css/style.css" rel="stylesheet">
 <?
- $Page->DisplayBody();
+ $Pine->Page->DisplayBody();
 ?>
   
 	<!-- START sample content -->
 	<section class="slide">
-		<? $Page->DisplaySnippet("greeting.html"); ?>             
+		<? $Pine->Page->DisplaySnippet("greeting.html"); ?>
 	</section>
 	<!-- END sample content -->	
 <? 
 
-$Page->DisplayFoot();
+$Pine->Page->DisplayFoot();
 	
 ?>

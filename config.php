@@ -46,7 +46,6 @@ define("PLUGIN_LOCALIZATION",       false);
 //Runtime configuration
 $_SESSION["admin_loggedin"] = true;
 $_SESSION["developer_loggedin"] = true;
-$_SESSION["companyid"] = "100001";
 $_SESSION["currency"] = "euro";
 $_SESSION["currency_symbol"] = "€";
 $_SESSION["languagecode"] = DEFAULT_LANG_CODE;

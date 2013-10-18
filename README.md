@@ -10,6 +10,8 @@ PinePHP is a basic framework for developing PHP applications. Its goal is to pro
 - alerts
 - MySQL support
 - HTML snippets
+- developer tool that shows server variables ($_SESSION, $_SERVER, ...)
+- integrated logging functionality (PHP, MySQL)
 - ...
 
 ## Requirements
@@ -27,28 +29,43 @@ Your application files need to be placed inside the /app folder. For basic confi
 
 #### Hello World!
 
+The page creation capabilities of PinePHP are delivered through the Page class. 
+
 ```php
 
-<?php
-$Page = $GLOBALS["Page"]; 
-$Page->DisplayHead();
+<?php 
+$Pine->Page->DisplayHead("PinePHP Testpage");
 
-$Page->DisplayBody();
+$Pine->Page->DisplayBody();
 ?>
   
 <b>Hello World!</b>
 	
-<? $Page->DisplayFoot(); ?>
+<? $Pine->Page->DisplayFoot(); ?>
 ```
 
 #### Using Snippets
 
 ```php
-<? $Page->DisplaySnippet("menu.php");
+<? $Pine->Page->DisplaySnippet("menu.php"); ?>
 ```
 
 All Snippets need to be placed in the app/snippets folder.
 
+### Using the Developer Tool
+
+In order to be able to user the developer tool, you need to be using $Pine->Page for displaying all your pages. In config.php you also need to have SYSTEM_USE_DEV_CONSOLE enabled.
+
+The developer tool gives you access to all of PHP's superglobal variables. In addition to that, there is a module that allows you to create a log. If enabled, MySQL queries will be logged automatically. 
+
+To create a PHP log entry from one of your scripts:
+
+```php
+<? $Pine->Log->Add("Hello World!", "error"); ?>
+```
+
+The arguments are "message" and "error level". The error level distinguishes between "info" (default), "success" and "error".
+
 ## License
 
-PinePHP is licensed under the MIT license. Please see LICENSE.txt.
+PinePHP is licensed under the MIT license. See LICENSE.txt.

@@ -1,6 +1,8 @@
 <?
 session_start();
 
+date_default_timezone_set('Europe/Berlin');
+
 $time = microtime();
 $time = explode(' ', $time);
 $time = $time[1] + $time[0];
@@ -16,6 +18,10 @@ if (SYSTEM_MODE == "development") {
     error_reporting(-1);
 }
 
+require_once(SYSTEM_PATH . "core/class.log.php");
+require_once(SYSTEM_PATH . "core/class.validator.php");
+require_once(SYSTEM_PATH . "core/class.pine.php");
+
 include_once(SYSTEM_PATH . "core/class.database.php");
 include_once(SYSTEM_PATH . "core/format.php");
 include_once(SYSTEM_PATH . "core/alert.php");
@@ -24,7 +30,11 @@ include_once(SYSTEM_PATH . "core/module.geo.php");
 include_once(SYSTEM_PATH . "core/general.php");
 include_once(SYSTEM_PATH . "core/htmlbase.php");
 
-$Page = new HTMLpage();
+$phplog = array();  global $phplog;
+$sqllog = array();  global $sqllog;
+
+$Pine = new Pine();
+global $Pine;
 
 //Login handling only
 if (LOGIN_REQUIRED === false) {
